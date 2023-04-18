@@ -1,14 +1,15 @@
 <template>
   <h2>History</h2>
-  <div
-    v-for="word in historyStore.history"
-    class="d-flex justify-space-between bg-grey-lighten-2 pa-2 mb-1"
-    @click="(e) => clickItem(e, word)"
-    style="cursor: pointer"
-  >
-    <p>{{ word }}</p>
-    <v-icon icon="mdi-delete" color="red"></v-icon>
-  </div>
+  <ul>
+    <li
+      v-for="word in historyStore.history"
+      class="d-flex justify-space-between bg-grey-lighten-2 pa-2 mb-1"
+      @click="(e) => clickItem(e, word)"
+    >
+      <p>{{ word }}</p>
+      <v-icon icon="mdi-delete" color="red"></v-icon>
+    </li>
+  </ul>
 </template>
 
 <script setup>
@@ -28,3 +29,9 @@ function clickItem(e, word) {
   }
 }
 </script>
+
+<style scoped>
+li {
+  cursor: pointer;
+}
+</style>
