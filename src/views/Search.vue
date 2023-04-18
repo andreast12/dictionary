@@ -15,7 +15,7 @@ import { useHistoryStore } from "@/store/history";
 
 const route = useRoute();
 const historyStore = useHistoryStore();
-const word = route.query.word.toLowerCase().trim();
+const word = route.params.word;
 
 historyStore.addItem(word);
 </script>

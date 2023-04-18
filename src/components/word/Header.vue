@@ -1,8 +1,9 @@
 <template>
-  <v-btn class="bg-grey-darken-4 mb-3"
-    ><router-link to="/" class="text-white text-decoration-none"
-      >Go back</router-link
-    ></v-btn
+  <v-btn
+    class="bg-grey-darken-4 mb-3"
+    prepend-icon="mdi-arrow-left-thick"
+    @click="$router.push('/')"
+    >Back</v-btn
   >
   <h1>{{ word }}</h1>
 

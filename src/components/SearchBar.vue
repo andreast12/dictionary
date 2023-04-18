@@ -1,11 +1,11 @@
 <template>
-  <v-form action="/search" @submit="preventEmpty">
+  <v-form @submit="submitForm">
     <v-row justify="center">
       <v-col cols="10" sm="9">
         <v-text-field
           placeholder="Search a word"
           name="word"
-          v-model="word"
+          v-model="wordInput"
         ></v-text-field>
       </v-col>
       <v-col cols="2" class="text-center">
@@ -17,12 +17,15 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-const word = ref("");
+const wordInput = ref("");
+const router = useRouter();
 
-function preventEmpty(e) {
+function submitForm(e) {
   e.preventDefault();
-  if (word.value.trim() === "") return;
-  e.target.submit();
+  const word = wordInput.value.toLowerCase().trim();
+  if (word === "") return;
+  router.push(`search/${word}`);
 }
 </script>

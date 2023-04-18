@@ -16,5 +16,10 @@ export const useHistoryStore = defineStore("history", () => {
     localStorage.setItem("history", JSON.stringify(history.value));
   }
 
-  return { history, addItem };
+  function deleteItem(word) {
+    history.value = history.value.filter((item) => item !== word);
+    localStorage.setItem("history", JSON.stringify(history.value));
+  }
+
+  return { history, addItem, deleteItem };
 });

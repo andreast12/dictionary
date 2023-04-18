@@ -1,18 +1,30 @@
 <template>
   <h2>History</h2>
-  <v-list density="compact" class="bg-grey-lighten-2">
-    <v-list-item v-for="item in historyStore.history">
-      <router-link
-        :to="`/search?word=${item}`"
-        class="text-black text-decoration-none"
-        >{{ item }}</router-link
-      >
-    </v-list-item>
-  </v-list>
+  <div
+    v-for="word in historyStore.history"
+    class="d-flex justify-space-between bg-grey-lighten-2 pa-2 mb-1"
+    @click="(e) => clickItem(e, word)"
+    style="cursor: pointer"
+  >
+    <p>{{ word }}</p>
+    <v-icon icon="mdi-delete" color="red"></v-icon>
+  </div>
 </template>
 
 <script setup>
 import { useHistoryStore } from "@/store/history";
+import { useRouter } from "vue-router";
 
 const historyStore = useHistoryStore();
+const router = useRouter();
+
+function clickItem(e, word) {
+  // If click on delete icon
+  if (e.target.tagName === "I") {
+    historyStore.deleteItem(word);
+  } else {
+    // Open the corresponding page
+    router.push(`/search/${word}`);
+  }
+}
 </script>
